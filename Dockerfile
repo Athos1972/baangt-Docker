@@ -49,14 +49,15 @@ RUN touch /root/.vnc/passwd && \
 
 COPY start-vncserver.sh /root/
 COPY baangt.sh /root/
-COPY getdrivers.sh /root/
 RUN chmod a+x /root/start-vncserver.sh && \
     chmod a+x /root/baangt.sh && \
-    chmod a+x /root/getdrivers.sh && \
-    /root/getdrivers.sh && \
     echo "mycontainer" > /etc/hostname && \
     echo "127.0.0.1	localhost" > /etc/hosts && \
     echo "127.0.0.1	mycontainer" >> /etc/hosts
+
+WORKDIR /baangt
+RUN mkdir /baangt/browserDrivers
+RUN python3 baangt.py --reloadDrivers=True
 
 EXPOSE 5901
 ENV USER root
