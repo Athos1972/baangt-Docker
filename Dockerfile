@@ -55,7 +55,8 @@ RUN chmod a+x /root/start-vncserver.sh && \
     echo "127.0.0.1	localhost" > /etc/hosts && \
     echo "127.0.0.1	mycontainer" >> /etc/hosts
 
-WORKDIR /baangt/
+WORKDIR /baangt
+RUN mkdir /baangt/browserDrivers
 RUN python3 baangt.py --reloadDrivers=True
 
 EXPOSE 5901
