@@ -1,1 +1,2 @@
-python3 /baangt/baangt.py
+cd /baangt/
+python3 baangt.py
